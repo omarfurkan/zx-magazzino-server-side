@@ -9,7 +9,7 @@ app.use(cors());
 
 
 app.get('/', (req, res) => {
-    res.send('Ready to Fly')
+    res.send('Ready to Fly');
 });
 
 
