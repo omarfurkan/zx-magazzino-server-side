@@ -2,13 +2,14 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require('dotenv').config()
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const { MongoClient, ServerApiVersion } = require('mongodb');
+const ObjectId = require('mongodb').ObjectId;
 const port = process.env.PORT || 5000;
 
 
-app.use(express.json());
-app.use(cors());
 
+app.use(cors());
+app.use(express.json());
 
 
 
@@ -32,11 +33,11 @@ async function run() {
             res.send(result);
         })
 
-        app.get('/itemDetail/:id', async (req, res) => {
-            const id = req.params.id
+        app.get('/item/:id', async (req, res) => {
+            const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await inventoryCollection.findOne(query);
-            res.render(result);
+            res.send(result);
         })
 
     }
