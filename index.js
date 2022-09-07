@@ -26,6 +26,7 @@ async function run() {
         await client.connect();
         const inventoryCollection = client.db("warehouse").collection("inventoryItems");
 
+        // get all items
         app.get('/items', async (req, res) => {
             const query = {};
             const cursor = inventoryCollection.find(query);
@@ -33,10 +34,20 @@ async function run() {
             res.send(result);
         })
 
+        // get single item by id
+
         app.get('/item/:id', async (req, res) => {
             const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await inventoryCollection.findOne(query);
+            res.send(result);
+        })
+
+        // add item
+
+        app.post('/item', async (req, res) => {
+            const doc = req.body;
+            const result = await inventoryCollection.insertOne(doc);
             res.send(result);
         })
 
