@@ -43,12 +43,20 @@ async function run() {
             res.send(result);
         })
 
-        // add item
+        // add an item
 
         app.post('/item', async (req, res) => {
             const doc = req.body;
             const result = await inventoryCollection.insertOne(doc);
             res.send(result);
+        })
+
+        // delete an item
+        app.delete('/item/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await inventoryCollection.deleteOne(query);
+            res.send(result)
         })
 
     }
