@@ -43,6 +43,17 @@ async function run() {
             res.send(result);
         })
 
+        // get items by query
+        app.get('/myitem/:email?', async (req, res) => {
+            const email = req.query.email;
+            const query = { email }
+            const cursor = inventoryCollection.find(query);
+            const result = await cursor.toArray();
+            res.send(result);
+        })
+
+
+
         // add an item
 
         app.post('/item', async (req, res) => {
