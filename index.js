@@ -28,7 +28,7 @@ async function run() {
         const inventoryCollection = client.db("warehouse").collection("inventoryItems");
 
 
-        // 
+        // JWT
         function verifyJWT(req, res, next) {
             const authHeader = req.headers.authrization;
             if (!authHeader) {
@@ -43,8 +43,6 @@ async function run() {
                 req.decoded = decoded;
                 next();
             })
-
-
         }
 
 
