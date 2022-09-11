@@ -117,18 +117,8 @@ async function run() {
 
     }
 }
-app.get('/', (req, res) => {
-    res.send('hello world')
-})
 
-run().catch(console.dir())
-
-
-
-
-
-
-
+run().catch(console.dir)
 
 
 app.get('/', (req, res) => {
